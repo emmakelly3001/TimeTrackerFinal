@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../css/login.css">
-    <script src="../js/login.js" defer></script>
+    <!--script src="../js/project.js" defer></script-->
 
 </head>
 <body>
@@ -13,11 +13,11 @@
     <h1>Special Offers Websites</h1>
     <p>Fill in the special offer website to add to the list.</p>
     <!-- Registration form -->
-    <form id="CRUDForm">
-        <div class="form-group">
-            <label for="name">URL Address </label>
-            <input type="text" id="name" name="name" placeholder="Enter the URL of the special offer website" required>
-        </div>
+    <form id="projectForm">
+            <label for="projectSearch">Enter Project Name: </label>
+            <input type="text" id="projectSearch" name="projectSearch" required>
+            <button type="submit">Search</button>
+
 
         <button type="submit" id="addButton">Add </button><br>
         <button type="submit" id="updateButton">Update </button><br>
@@ -26,6 +26,11 @@
 
     <!-- Display the result of the POST request -->
     <div id="resultMessage"></div>
+
+    <!-- Project list display -->
+    <div id="project.js"></div> <!-- Here the fetched projects will be displayed -->
 </div>
 
 </body>
+
+<script src="../js/project.js" defer></script>
