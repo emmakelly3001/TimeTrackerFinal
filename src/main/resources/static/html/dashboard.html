@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../css/login.css">
+<<<<<<< Updated upstream
     <script src="../js/login.js" defer></script>
 
+=======
+>>>>>>> Stashed changes
 </head>
 <body>
 <div class="container">
@@ -19,9 +22,33 @@
             <input type="text" id="name" name="name" placeholder="Enter the URL of the special offer website" required>
         </div>
 
+<<<<<<< Updated upstream
         <button type="submit" id="addButton">Add </button><br>
         <button type="submit" id="updateButton">Update </button><br>
         <button type="submit" id="deleteButton">Delete </button><br>
+=======
+        <!-- Reflected XSS code -->
+        <br><br><br>
+        <label for="userInput">Enter input for Reflected XSS:</label>
+        <input type="text" id="userInput" /><br>
+        <button type="button" id="addButton" onclick="redirectToReflectedXSS()">Add</button><br>
+
+        <!-- DOM based XSS-->
+        <br><br>
+        <label for="DomInput">Enter input for DOM-Based XSS:</label>
+        <input id="DomInput" type="text" />
+        <button onclick="displayInput()">Submit</button>
+        <div id="output"></div>
+
+
+
+<br><br>
+        <!--Stored XSS-->
+        <label for="commentInput">Enter input for Stored XSS:</label>
+        <input id="commentInput" type="text" />
+        <button onclick="submitComment()">Submit</button>
+        <div id="commentOutput"></div>
+>>>>>>> Stashed changes
     </form>
 
     <!-- Display the result of the POST request -->

@@ -27,8 +27,9 @@ public class securityConfig{
         return http.build();
     }
 
-
+    @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        System.out.println("BCryptPasswordEncoder Bean is being created");  // Debugging line
+        return new BCryptPasswordEncoder();  // BCryptPasswordEncoder bean
     }
 }
