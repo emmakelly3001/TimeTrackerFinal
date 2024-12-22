@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -14,7 +16,6 @@ public class ProjectController {
 
     @Autowired
     private final JdbcTemplate jdbcTemplate;
-
 
 
     // Constructor injection for JdbcTemplate
@@ -35,8 +36,7 @@ public class ProjectController {
             if (result.isEmpty()) {
                 response.put("status", "error");
                 response.put("message", "Project not found.");
-            }
-            else {
+            } else {
                 response.put("status", "success");
                 response.put("message", "Project found.");
                 response.put("data", result); // Add the query result to the response
@@ -48,5 +48,11 @@ public class ProjectController {
 
         return response;
 
+    }
+
+    @GetMapping("/echo")
+    public String reflectUserInput(@RequestParam("input") String userInput) {
+        // Directly returning user input without sanitization
+        return "<html><body>You entered: " + userInput + "</body></html>";
     }
 }

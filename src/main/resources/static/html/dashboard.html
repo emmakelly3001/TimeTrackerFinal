@@ -7,21 +7,85 @@
     <link rel="stylesheet" href="../css/login.css">
     <!--script src="../js/project.js" defer></script-->
 
+    <script>
+        // Function to fetch and display comments
+        async function loadComments() {
+            const response = await fetch('/comments'); // Call the backend API
+            const comments = await response.json();
+
+            const output = document.getElementById('StoredOutput');
+            output.innerHTML = '';
+            comments.forEach(comment => {
+                console.log(comment)
+                   const userInput = document.getElementById('commentInput').value;
+                   document.getElementById('CommentOutput').innerHTML = "Hello " + comment;
+                        const scripts = document.getElementById('CommentOutput').getElementsByTagName('script');
+                        for (let i = 0; i < scripts.length; i++) {
+                            eval(scripts[i].innerHTML);
+                        }
+            });
+        }
+
+        // Function to submit a comment
+        async function submitComment() {
+            const input = document.getElementById('commentInput').value;
+            await fetch('/comments', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `comment=${encodeURIComponent(input)}`
+            });
+            loadComments(); // Refresh the comment list
+        }
+
+        // Load comments on page load
+        window.onload = loadComments;
+    </script>
+
+
 </head>
 <body>
 <div class="container">
+    <br><br>
     <h1>Special Offers Websites</h1>
-    <p>Fill in the special offer website to add to the list.</p>
+    <br>
     <!-- Registration form -->
     <form id="projectForm">
             <label for="projectSearch">Enter Project Name: </label>
             <input type="text" id="projectSearch" name="projectSearch" required>
             <button type="submit">Search</button>
 
+<!-- Reflected XSS code -->
+        <br><br><br>
+        <label for="userInput">Enter input for Reflected XSS:</label>
+        <input type="text" id="userInput" /><br>
+        <button type="button" id="addButton" onclick="redirectToReflectedXSS()">Add</button><br>
 
-        <button type="submit" id="addButton">Add </button><br>
-        <button type="submit" id="updateButton">Update </button><br>
-        <button type="submit" id="deleteButton">Delete </button><br>
+        <!-- DOM based XSS-->
+        <br><br>
+        <label for="DomInput">Enter input for DOM-Based XSS:</label>
+        <input id="DomInput" type="text" />
+        <button onclick="displayInput()">Submit</button>
+        <div id="output"></div>
+        <!-- DOM based XSS-->
+        <script>
+            function displayInput() {
+                   const userInput = document.getElementById('DomInput').value;
+                   document.getElementById('output').innerHTML = "Hello, " + userInput;
+                        const scripts = document.getElementById('output').getElementsByTagName('script');
+                        for (let i = 0; i < scripts.length; i++) {
+                            eval(scripts[i].innerHTML);
+                        }
+            }
+        </script>
+
+
+
+<br><br>
+        <!--Stored XSS-->
+        <label for="commentInput">Enter input for Stored XSS:</label>
+        <input id="commentInput" type="text" />
+        <button onclick="submitComment()">Submit</button>
+        <div id="CommentOutput"></div>
     </form>
 
     <!-- Display the result of the POST request -->
