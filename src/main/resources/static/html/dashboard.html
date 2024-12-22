@@ -14,7 +14,6 @@
             const comments = await response.json();
 
             const output = document.getElementById('StoredOutput');
-            output.innerHTML = '';
             comments.forEach(comment => {
                 console.log(comment)
                    const userInput = document.getElementById('commentInput').value;
@@ -46,15 +45,15 @@
 <body>
 <div class="container">
     <br><br>
-    <h1>Special Offers Websites</h1>
+    <h1>Projects</h1>
     <br>
-    <!-- Registration form -->
+    <!-- SQL Injection -->
     <form id="projectForm">
-            <label for="projectSearch">Enter Project Name: </label>
+            <label for="projectSearch">Enter Project Name to Search: </label>
             <input type="text" id="projectSearch" name="projectSearch" required>
             <button type="submit">Search</button>
 
-<!-- Reflected XSS code -->
+        <!-- Reflected XSS code -->
         <br><br><br>
         <label for="userInput">Enter input for Reflected XSS:</label>
         <input type="text" id="userInput" /><br>
